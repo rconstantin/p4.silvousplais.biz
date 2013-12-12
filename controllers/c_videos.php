@@ -32,6 +32,16 @@ class videos_controller extends base_controller {
         echo $this->template;
 
     }
+    public function p_update_playlist($playlist, $user_id) {
+        $playlist_id = 0;
+        $q = "SELECT playlist_id FROM playlists WHERE user_id = ". $user_id . " AND playlist_name = '" . $playlist . "'";
+        $playlist_id = DB::instance(DB_NAME)->select_field($q);
+        if ($playlist_id == 0) {
+            $data = Array('playlist_name' => $playlist, 'user_id' => $user_id, 'created' => Time::now());
+            $playlist_id = DB::instance(DB_NAME)->insert('playlists', $data);
+        }
+        return $playlist_id;
+    }
 
     public function p_add() {
 
@@ -42,42 +52,40 @@ class videos_controller extends base_controller {
             # redirect user back to add a video since nothing was entered... 
             Router::redirect("/videos/add/$error");
         }
-        if (empty($_POST['playlist_id'])) {
-            $_POST['playlist_id'] = 1;
+        if (empty($_POST['playlist_name'])) {
+            $_POST['playlist_name'] = "DEFAULT";
         }
-        else {
-            # convert playlist_name to id from DB; TBD
-            $_POST['playlist_id'] = 1;
-
-        }
+        
         # Associate this video with this user
-        $_POST['user_id']  = $this->user->user_id;
-
+        $data['user_id']  = $this->user->user_id;
+        # insert new playlist into DB or if it exists return the playlist_id
+        $data['playlist_id'] = $this->p_update_playlist($_POST['playlist_name'], $data['user_id']);
         
         # Get Other YT info: title, thumbnail, etc from Util function based on url
-        $data = AppUtils::yt_video_info($_POST['url']);
-        $_POST['thumbnail_url'] = $data['thumbnail_url'];
-        $_POST['title'] = $data['title'];
+        $yt_data = AppUtils::yt_video_info($_POST['url']);
+        $data['thumbnail_url'] = $yt_data['thumbnail_url'];
+        $data['title'] = $yt_data['title'];
+        $data['url'] = $_POST['url'];
         
         # get yt_video id from url
         preg_match('/[?&]v=([^&]+)/', $_POST['url'],$matches);
 
-        $_POST['yt_video_id'] = $matches[1];
+        $data['yt_video_id'] = $matches[1];
 
         # Unix timestamp of when this video was created / modified
-        $_POST['created']  = Time::now();
+        $data['created']  = Time::now();
         # make sure yt_video_id has not been added by this user already
         # TBD DB Check
         # Insert
         # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
-        DB::instance(DB_NAME)->insert('videos', $_POST);
+        DB::instance(DB_NAME)->insert('videos', $data);
 
         # Setup view to display results
         $view = View::instance('v_videos_p_add');
         $view->add_time = Time::now();
-        $view->thumbnail_url = $_POST['thumbnail_url'];
-        $view->title = $_POST['title'];
-        $view->yt_video_id = $_POST['yt_video_id'];
+        $view->thumbnail_url = $data['thumbnail_url'];
+        $view->title = $data['title'];
+        $view->yt_video_id = $data['yt_video_id'];
         # render view
         echo $view;
 

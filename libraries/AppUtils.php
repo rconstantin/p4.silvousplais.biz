@@ -13,6 +13,7 @@ class AppUtils {
         $data = stripslashes($data);
         return $data;
     }
+    
     public static function yt_video_info($url) {
         // requires extension=php_curl.dll in php.ini
         // in particular interested in thumbnail_url and title.
