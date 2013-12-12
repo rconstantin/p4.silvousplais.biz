@@ -22,6 +22,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `playlists` (
   `playlist_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `playlist_name` varchar(255) NOT NULL,
   `created` int(11) NOT NULL,
   PRIMARY KEY (`playlist_id`)
@@ -103,6 +104,11 @@ CREATE TABLE `videos` (
 --
 -- Constraints for dumped tables
 --
+-
+-- Constraints for table `playlists`
+--
+ALTER TABLE `playlists`
+  ADD CONSTRAINT `playlists_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users_users`
@@ -114,8 +120,8 @@ ALTER TABLE `users_users`
 -- Constraints for table `videos`
 --
 ALTER TABLE `videos`
-  ADD CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `videos_ibfk_2` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`playlist_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `videos`
-  ADD CONSTRAINT `videos_ibfk_2` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`playlist_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
