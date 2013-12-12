@@ -1,0 +1,18 @@
+2013-12-08 22:25:12 - INFO --> -------------------------- 
+2013-12-08 22:25:12 - INFO --> Controller/Method: users/p_signup 
+2013-12-08 22:25:12 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-08 22:25:12 - INFO --> From: P4_NONAME (robbieconstantin@gmail.com) 
+2013-12-08 22:25:12 - INFO --> To: robbie constantin (robbieconstantin@gmail.com),  
+2013-12-08 22:25:12 - INFO --> CC:  
+2013-12-08 22:25:12 - INFO --> BCC:  
+2013-12-08 22:25:12 - INFO --> Subject: Welcome to P4_NONAME 
+2013-12-08 22:25:12 - INFO --> Body: Hi robbie constantin, this is just a message to confirm your registration at P4_NONAME 
+2013-12-08 22:39:46 - INFO --> -------------------------- 
+2013-12-08 22:39:46 - INFO --> Controller/Method: users/p_signup 
+2013-12-08 22:39:46 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-08 22:39:46 - INFO --> From: P4_NONAME (robbieconstantin@gmail.com) 
+2013-12-08 22:39:46 - INFO --> To: robbie constantin (robbieconstantin@gmail.com),  
+2013-12-08 22:39:46 - INFO --> CC:  
+2013-12-08 22:39:46 - INFO --> BCC:  
+2013-12-08 22:39:46 - INFO --> Subject: Welcome to P4_NONAME 
+2013-12-08 22:39:46 - INFO --> Body: Hi robbie constantin, this is just a message to confirm your registration at P4_NONAME 

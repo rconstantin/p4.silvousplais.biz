@@ -14,11 +14,15 @@ If you want a different default time format for this app, set it below
 */
 
 # What is the name of this app?
-	define('APP_NAME', 'Sample App');  
+	define('APP_NAME', 'P4_NONAME');  
+
+# Default Avatar URL
+	define('DEFAULT_AVATAR_URL', 'yt.jpg');
+
 
 # When email is sent out from the server, where should it come from?
 # Ideally, this should match the domain name
-	define('APP_EMAIL', 'webmaster@sample-app.com'); 
+	define('APP_EMAIL', 'robbieconstantin@gmail.com'); 
 
 /* 
 A email designated to receive messages from the server. Examples:
@@ -28,10 +32,10 @@ A email designated to receive messages from the server. Examples:
  	
  	Some might want this to be the same as the APP_EMAIL, others might want to create a designated gmail address for it
 */ 	
-	define('SYSTEM_EMAIL', 'webmaster@myapp.com'); 
+	define('SYSTEM_EMAIL', 'robbieconstantin@gmail.com'); 
 
 # Default DB name for this app
-	define('DB_NAME', 'myapp_com'); 
+	define('DB_NAME', 'silvousp_p4_silvousplais_biz'); 
 
 # Timezone
 	define('TIMEZONE', 'America/New_York');
@@ -43,5 +47,5 @@ A email designated to receive messages from the server. Examples:
 	//define('SMTP_PASSWORD', '');
 
 # For extra security, you might want to set different salts than what the core uses
-	//define('PASSWORD_SALT', '');
-	//define('TOKEN_SALT', '');
+	define('PASSWORD_SALT', 'snfngfjgfokffgjkfgjkfwqa');
+	define('TOKEN_SALT', 'sdnngfjfgndfkfjgwfjfgjfl');
