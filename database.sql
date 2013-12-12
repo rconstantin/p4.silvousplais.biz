@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 -- Database: `silvousp_p4_silvousplais_biz`
 --
 
--- --------------------------------------------------------
+CREATE DATABASE silvousp_p4_silvousplais_biz;
 
 --
 -- Table structure for table `playlists`
@@ -104,7 +104,7 @@ CREATE TABLE `videos` (
 --
 -- Constraints for dumped tables
 --
--
+--
 -- Constraints for table `playlists`
 --
 ALTER TABLE `playlists`
