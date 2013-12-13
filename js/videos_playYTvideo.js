@@ -1,6 +1,5 @@
 
 var yt_video_id = $('#yt-video').html();
-console.log(yt_video_id);
 var ga = document.createElement('script');
 ga.type = 'text/javascript';
 ga.async = false;
@@ -10,17 +9,20 @@ s.parentNode.insertBefore(ga, s);
 
 var done = false;
 var player;
-console.log('line 21');
+$('#yt-video-clear').on('click',function() {
+    $('#yt-video-clear').addClass('hidden');
+    player.destroy();
+});
 $('#thumbnail').on('click', function() {
  
-    console.log('onYouTubePlayerAPIReady');
+    $('#yt-video-clear').removeClass('hidden');
     player = new YT.Player('ytv', {
         playerVars:{
             modestbranding:'1',
             autohide: '1'
         },
         height: '440',
-        width: '840',
+        width: '640',
         videoId: yt_video_id,
         events: {
             'onReady': onPlayerReady,
@@ -31,7 +33,7 @@ $('#thumbnail').on('click', function() {
 
 });
 function onPlayerReady(evt) {
-    console.log('onPlayerReady', evt);
+    // console.log('onPlayerReady', evt);
     evt.target.playVideo();
 }
 function onPlayerError(evt) {
@@ -40,7 +42,7 @@ function onPlayerError(evt) {
 }
 
 $('#ytv').on('click', function () {
-    console.log('stopVideo');
+    // console.log('stopVideo');
     player.toggleVideo();
 });
 // grab video id of video playing

@@ -71,21 +71,33 @@ class videos_controller extends base_controller {
         preg_match('/[?&]v=([^&]+)/', $_POST['url'],$matches);
 
         $data['yt_video_id'] = $matches[1];
+        # Check to see if this video has already been added by this user
+        $q = "SELECT created FROM videos WHERE yt_video_id = '".$data['yt_video_id']."' AND user_id = ".$data['user_id'];
+        $result = DB::instance(DB_NAME)->select_field($q);
 
-        # Unix timestamp of when this video was created / modified
-        $data['created']  = Time::now();
-        # make sure yt_video_id has not been added by this user already
-        # TBD DB Check
-        # Insert
-        # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
-        DB::instance(DB_NAME)->insert('videos', $data);
+        if ($result > 0) {
+            // This video was previously added by this user, return time of creation along with thumbnail and id
+            $data['created']  = $result;
+        }
+        else { // first time add
+            # Unix timestamp of when this video was created / modified
+            $data['created']  = Time::now();
+            # make sure yt_video_id has not been added by this user already
+            # TBD DB Check
+            # Insert
+            # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
+            DB::instance(DB_NAME)->insert('videos', $data);
+        }
 
         # Setup view to display results
         $view = View::instance('v_videos_p_add');
-        $view->add_time = Time::now();
+        $view->first_time_add = ($result > 0) ? FALSE : TRUE;
+        $view->add_time = $data['created'];
         $view->thumbnail_url = $data['thumbnail_url'];
         $view->title = $data['title'];
         $view->yt_video_id = $data['yt_video_id'];
+        $client_files_body = Array("/js/videos_playYTvideo.js");
+        $view->client_files_body = Utils::load_client_files($client_files_body);
         # render view
         echo $view;
 

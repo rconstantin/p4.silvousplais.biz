@@ -1,9 +1,13 @@
-<br>Your video was successfully added to the database  on <?=Time::display($add_time);?>;<br>
-More information relating to this video (click on thumbnail or video id to play video):<br> <br>
+<?php if ($first_time_add == TRUE): ?>
+    <br>Your video was SUCCESSFULLY added to the database  on <?=Time::display($add_time);?><br>
+<?php else: ?>
+    <br>Your video was PREVIOUSLY added to the database  on <?=Time::display($add_time);?><br>
+<?php endif ?>    
+<p2>(click on thumbnail to play video)</p2><br>
 <div id="yt_video_id"> The Video Title is : <?=$title?> <br>
-<img id="thumbnail" class="circular" src="<?=$thumbnail_url?>" alt="" width="60" height="60"><br>
-<!--<label for='thumbnail'>&nbsp;The youtube video ID is: <?=$yt_video_id?></label><br>-->
-The youtube video ID is: <div id='yt-video'><?=$yt_video_id?></div>
+<img id="thumbnail" src="<?=$thumbnail_url?>" alt="" width="60" height="60">
+<div id='yt-video' class='hidden'><?=$yt_video_id?></div>
+<div id='yt-video-clear' class='button hidden' >Destroy YTV</div><br>
 <div id="ytv"></div>
-<!--script loaded here to specify type application... template type is set to text-->
-<script type="application/javascript" src="/js/videos_playYTvideo.js"></script>
+<!--Load the js script here. Loading it in the _v_template would not work since we need the script embedded in this view-->
+<?php if(isset($client_files_body)) echo $client_files_body; ?>
