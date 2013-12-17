@@ -14,7 +14,7 @@ If you want a different default time format for this app, set it below
 */
 
 # What is the name of this app?
-	define('APP_NAME', 'P4_MYTUBE');  
+	define('APP_NAME', 'mytube');  
 
 # Default Avatar URL
 	define('DEFAULT_AVATAR_URL', 'yt.jpg');
