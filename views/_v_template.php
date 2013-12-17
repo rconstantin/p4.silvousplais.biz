@@ -7,7 +7,8 @@
     <!-- Common JS/CSS -->
     <!-- Common CSS/JSS -->
     <link rel="stylesheet" href="/css/app.css" type="text/css">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js"></script>	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- Controller Specific JS/CSS -->
     <?php if(isset($client_files_head)) echo $client_files_head; ?>
 	
@@ -34,7 +35,7 @@
                 </h3>
             <?php endif; ?>       
         </header>
-        <section>
+        <section id="v_template">
             <?php if(isset($hide_menu) AND !$hide_menu): ?>
                 <div id='menu'>
                     <?=$menu;?>

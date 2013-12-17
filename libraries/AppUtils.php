@@ -13,7 +13,7 @@ class AppUtils {
         $data = stripslashes($data);
         return $data;
     }
-    
+
     public static function yt_video_info($url) {
         // requires extension=php_curl.dll in php.ini
         // in particular interested in thumbnail_url and title.
@@ -23,5 +23,13 @@ class AppUtils {
         $result = curl_exec($curl);
         curl_close($curl);
         return json_decode($result, true);
+    }
+    public static function ytv_get_info($yt_video_id) {
+        
+        $content = file_get_contents("http://youtube.com/get_video_info?video_id=".$yt_video_id);
+        parse_str($content, $ytarr);
+        $video['title'] = $ytarr['title'];
+        $video['thumbnail_url'] = $ytarr['thumbnail_url'];
+        return $video;
     }
 } #eoc    

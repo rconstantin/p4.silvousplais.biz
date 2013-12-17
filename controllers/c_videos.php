@@ -42,65 +42,88 @@ class videos_controller extends base_controller {
         }
         return $playlist_id;
     }
-
-    public function p_add() {
-
-        # validate input
-        $_POST['url'] = AppUtils::test_input($_POST['url']);
-        if (empty($_POST['url'])) {
-            $error = "emptyVideo";
-            # redirect user back to add a video since nothing was entered... 
-            Router::redirect("/videos/add/$error");
-        }
-        if (empty($_POST['playlist_name'])) {
-            $_POST['playlist_name'] = "DEFAULT";
-        }
-        
+    public function p_add_to_db($last_played) {
+    
         # Associate this video with this user
         $data['user_id']  = $this->user->user_id;
         # insert new playlist into DB or if it exists return the playlist_id
         $data['playlist_id'] = $this->p_update_playlist($_POST['playlist_name'], $data['user_id']);
         
-        # Get Other YT info: title, thumbnail, etc from Util function based on url
-        $yt_data = AppUtils::yt_video_info($_POST['url']);
-        $data['thumbnail_url'] = $yt_data['thumbnail_url'];
-        $data['title'] = $yt_data['title'];
-        $data['url'] = $_POST['url'];
-        
         # get yt_video id from url
-        preg_match('/[?&]v=([^&]+)/', $_POST['url'],$matches);
-
-        $data['yt_video_id'] = $matches[1];
+        preg_match('/[?&]v=([^&]+)/', $_POST['yt_url'], $ytv_id);
+        $data['yt_video_id'] = $ytv_id[1];
+        
         # Check to see if this video has already been added by this user
-        $q = "SELECT created FROM videos WHERE yt_video_id = '".$data['yt_video_id']."' AND user_id = ".$data['user_id'];
-        $result = DB::instance(DB_NAME)->select_field($q);
+        $wc = "WHERE yt_video_id = '".$data['yt_video_id']."' AND user_id = ".$data['user_id'];
+        $q = "SELECT created,yt_title,thumbnail_url FROM videos ".$wc;
 
+        $result = DB::instance(DB_NAME)->select_row($q);
+    
         if ($result > 0) {
             // This video was previously added by this user, return time of creation along with thumbnail and id
-            $data['created']  = $result;
+            $data['created']  = $result['created'];
+            $data['yt_title'] = $result['yt_title'];
+            $data['thumbnail_url'] = $result['thumbnail_url'];
+            if ($last_played > 0) {
+                # update database with play time
+                $upd_data = Array('last_played'=>$last_played);
+                DB::instance(DB_NAME)->update_row('videos', $upd_data, $wc);
+            }
         }
         else { // first time add
             # Unix timestamp of when this video was created / modified
             $data['created']  = Time::now();
+            $data['last_played'] = $last_played;
+            $yt_info = AppUtils::ytv_get_info($data['yt_video_id']);
+            $data['yt_title'] = $yt_info['title'];
+            $data['thumbnail_url'] = $yt_info['thumbnail_url'];
             # make sure yt_video_id has not been added by this user already
             # TBD DB Check
             # Insert
             # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
             DB::instance(DB_NAME)->insert('videos', $data);
         }
+        return $data;
+    }
+    public function p_add() {
 
+        # validate input
+        $_POST['yt_url'] = AppUtils::test_input($_POST['yt_url']);
+        if (empty($_POST['yt_url'])) {
+            $error = "emptyVideo";
+            # redirect user back to add a video since nothing was entered... 
+            # Router::redirect("/videos/add/$error");
+            echo "Error: Need to submit a valid URL";
+            return;
+        }
+        if (empty($_POST['playlist_name'])) {
+            $_POST['playlist_name'] = "DEFAULT";
+        }
+
+        $data = $this->p_add_to_db(0);
+    
         # Setup view to display results
         $view = View::instance('v_videos_p_add');
-        $view->first_time_add = ($result > 0) ? FALSE : TRUE;
+        # $view->first_time_add = ($result > 0) ? FALSE : TRUE;
         $view->add_time = $data['created'];
         $view->thumbnail_url = $data['thumbnail_url'];
-        $view->title = $data['title'];
+        $view->title = $data['yt_title'];
         $view->yt_video_id = $data['yt_video_id'];
         $client_files_body = Array("/js/videos_playYTvideo.js");
         $view->client_files_body = Utils::load_client_files($client_files_body);
         # render view
         echo $view;
 
+    }
+    # function p_playing() insert into DB the currently playing youtube video by this user
+    public function p_playing() {
+        # $_POST['yt_video_id'] = 'qRsTNp6iczQ';
+        # $_POST['yt_url'] = 'http://www.youtube.com/watch?v=qRsTNp6iczQ';
+        $_POST['playlist_name'] = "DEFAULT";
+
+        $data = $this->p_add_to_db(Time::now());
+        # Let's create a history table to track played videos for each user
+        # TBD
     }
     # function index() lists all the videos of members being followed
     # it also list own videos.
@@ -114,9 +137,11 @@ class videos_controller extends base_controller {
 
         $q = 'SELECT
                 videos.video_id,
-                videos.content,
+                videos.yt_video_id,
+                videos.yt_title,
+                videos.thumbnail_url,
                 videos.created,
-                videos.modified,
+                videos.last_played,
                 videos.user_id AS video_user_id,
                 users_users.user_id AS follower_id,
                 users.first_name,
@@ -130,15 +155,16 @@ class videos_controller extends base_controller {
                 ON videos.user_id = users.user_id
               WHERE users_users.user_id = '.$this->user->user_id;
 
-         # Run this query
-         $videos = DB::instance(DB_NAME)->select_rows($q);
+        # Run this query
+        $videos = DB::instance(DB_NAME)->select_rows($q);
+        
+        # Pass this data to the view
+        $this->template->content->videos = $videos;
 
-         # Pass this data to the view
-         $this->template->content->videos = $videos;
-
-         # Render this view
-
-         echo $this->template;      
+        # Render this view
+        $client_files_body = Array("/js/videos_playYTvideo.js");
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);
+        echo $this->template;      
     }
     # function users() lists all the users and displays connections to $user
     # i.e where the members are followed or not by this $user
@@ -195,12 +221,13 @@ class videos_controller extends base_controller {
         Router::redirect('/videos/users');
     }
     # Delete a video from videos table
-    public function delete($video_id) {
+    public function delete() {
         # prepare where clause to delete video
-        $where_clause = 'WHERE video_id =' .$video_id;
+        $where_clause = 'WHERE video_id =' .$_POST['yt_video_id'];
         # delete video from DB
         DB::instance(DB_NAME)->delete('videos',$where_clause);
-        Router::redirect("/videos/index");
+        # Router::redirect("/videos/index");
+
     }
     # update text of a video
     public function modify($video_id, $error = NULL) {

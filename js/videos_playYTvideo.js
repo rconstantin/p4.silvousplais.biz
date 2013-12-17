@@ -1,5 +1,5 @@
 
-var yt_video_id = $('#yt-video').html();
+
 var ga = document.createElement('script');
 ga.type = 'text/javascript';
 ga.async = false;
@@ -11,18 +11,33 @@ var done = false;
 var player;
 $('#yt-video-clear').on('click',function() {
     $('#yt-video-clear').addClass('hidden');
+    $('#form-view').removeClass('hidden');
+    $('.yt-info').removeClass('hidden');
+    $('.user-info').removeClass('hidden');
     player.destroy();
+    location.reload();
 });
-$('#thumbnail').on('click', function() {
- 
+$('.yt-info').hover(function() {
+    $('.yt-info-full', $(this)).slideToggle(100, 'linear');
+});
+
+$('.thumbnail').on('click', function() {
+    // Get the yt_video_id from html of yt-video
+    // var yt_video_id = $('#yt-video').html();
+    var yt_video_id = $(this).attr("name");
+
+    $('#form-view').addClass('hidden');
+    $('.yt-info').addClass('hidden');
+    $('.user-info').addClass('hidden');
     $('#yt-video-clear').removeClass('hidden');
+
     player = new YT.Player('ytv', {
         playerVars:{
             modestbranding:'1',
             autohide: '1'
         },
-        height: '440',
-        width: '640',
+        height: '472.5',
+        width: '840',
         videoId: yt_video_id,
         events: {
             'onReady': onPlayerReady,
@@ -35,6 +50,7 @@ $('#thumbnail').on('click', function() {
 function onPlayerReady(evt) {
     // console.log('onPlayerReady', evt);
     evt.target.playVideo();
+
 }
 function onPlayerError(evt) {
     console.log('onError',evt);
@@ -47,16 +63,49 @@ $('#ytv').on('click', function () {
 });
 // grab video id of video playing
 function onPlayerStateChange(evt) {
-    console.log('onPlayerStateChange', evt);
+    // console.log('onPlayerStateChange',evt);
     if (evt.data == YT.PlayerState.PLAYING) {
-        var url = evt.target.getVideoUrl();
-        // "http://www.youtube.com/watch?v=gzDS-Kfd5XQ&feature=..."
-        var match = url.match(/[?&]v=([^&]+)/);
-        // ["?v=gzDS-Kfd5XQ", "gzDS-Kfd5XQ"]
-        var videoId = match[1];
-        console.log(videoId);
-        console.log(url);
+        var youtube_url = evt.target.getVideoUrl();
+       // console.log('Video Playing Calling Ajax to add play time to db', youtube_url);
+        $.ajax({
+            type: 'POST',
+            url: '/videos/p_playing/',
+            success: function(response) { 
 
+                // For debugging purposes
+                // console.log("SUCCESS!!!");
+
+            },
+            data: {
+                yt_url: youtube_url,
+            },
+        });
     }
 }
+// jquery plugin for dialog window
+// $(function() {
+//     $( "#dialog" ).dialog();
+// });
+
+// Delete Confirmation TBD
+
+$("a.remove").on("click",function(event){
+//   if(confirm("Are you sure you want to delete this Video?")) {
+        var video_id = $(this).attr("id");
+        $.ajax({
+            type: 'POST',
+            url: '/videos/delete/',
+            success: function(response) { 
+
+                alert("Video removed!");
+                location.reload();
+
+            },
+            data: {
+                yt_video_id: video_id,
+            },
+        });
+//   }
+   
+});
 

@@ -86,10 +86,9 @@ CREATE TABLE `users_users` (
 
 CREATE TABLE `videos` (
   `video_id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `thumbnail_url` varchar(255) NOT NULL,
   `yt_video_id` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `yt_title` varchar(255) NOT NULL,
+  `thumbnail_url` varchar(255) NOT NULL,
   `playlist_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `created` int(11) NOT NULL,
