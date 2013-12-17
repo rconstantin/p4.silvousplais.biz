@@ -161,7 +161,7 @@ class videos_controller extends base_controller {
                 ON videos.user_id = users_users.user_id_followed
               INNER JOIN users
                 ON videos.user_id = users.user_id
-              WHERE users_users.user_id = '.$this->user->user_id;
+              WHERE users_users.user_id = '.$this->user->user_id .' ORDER BY video_user_id, videos.last_played DESC';
 
         # Run this query
         $videos = DB::instance(DB_NAME)->select_rows($q);
