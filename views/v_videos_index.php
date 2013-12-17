@@ -8,6 +8,7 @@
 <!-- common divs to display/destroy ytv-->
 <?php $owner = 0; ?>
 <?php foreach($videos as $video): ?>
+<br>
     <div class="user-info">
         <!-- print owner name and display avatar at top of posts by owner. 
                  No need for Avatar if owner is same as logged in user -->
@@ -45,9 +46,9 @@
             </span>    
         <? endif; ?> 
         <span class="yt-info-full">
-            <p2>
+            <p4>
                 <?php if ($owner == 1): ?>
-                    ((click on &times to <font color='red'>remove </font>video from your list))<br>
+                    ((click on <font color='green'>X</font> to <font color='red'>remove </font>video from your list))<br>
                 <?php endif; ?>
                 (click on thumbnail to <font color='red'>play </font>video)<br>
                 <mark class="green"> Video Ttile: <?=$video['yt_title']?>.</mark><br>
@@ -59,10 +60,11 @@
                 <mark class="green">Initially added on: 
                     <?=Time::display($video['created'],'',$video['timezone'])?>.<br>
                 </mark>
-            </p2>
+            </p4>
         </span>
         <br>
     </div>
+   
 <br>
 <?php endforeach; ?>
 <?php if(isset($client_files_body)) echo $client_files_body; ?>

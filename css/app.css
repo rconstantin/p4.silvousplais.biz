@@ -206,7 +206,7 @@ div {overflow: hidden;} */
     list-style: none;
 }
 #nav li {
-    position:relative;
+ /*   position:relative;*/
     float: left; 
 }
 #nav li a {
@@ -271,30 +271,46 @@ div {overflow: hidden;} */
 .hidden {
     visibility: hidden;
 } 
-.button {
-   border-top: 1px solid #96d1f8;
-   background: #65a9d7;-webkit-linear-gradient(top, #3e779d, #2A3A46)
-   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#2A3A46));
-   background: -webkit-linear-gradient(top, #3e779d, #2A3A46);
-   background: -moz-linear-gradient(top, #3e779d, #2A3A46);
-   background: -ms-linear-gradient(top, #3e779d, #2A3A46);
-   background: -o-linear-gradient(top, #3e779d, #2A3A46);
-   padding: 5px 10px;
-   -webkit-border-radius: 8px;
-   -moz-border-radius: 8px;
-   border-radius: 8px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
-   text-decoration: none;
-   cursor: pointer;
-   vertical-align: middle;
-   height: 20px;
+
+/*.yt-info .remove {*/
+a.remove {  
+    border: 3px solid #0a0a0a;
+    border-radius: 100%;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    background: rgb(240,240,240);
+    font-weight: bold;
+    position: absolute;
+    top: -12px;
+    left: -7px;
+    z-index: 100;
+
 }
+.red {background: red;}
+
+.button {
+    border-top: 1px solid #96d1f8;
+    background: #65a9d7;-webkit-linear-gradient(top, #3e779d, #2A3A46)
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#2A3A46));
+    background: -webkit-linear-gradient(top, #3e779d, #2A3A46);
+    background: -moz-linear-gradient(top, #3e779d, #2A3A46);
+    background: -ms-linear-gradient(top, #3e779d, #2A3A46);
+    background: -o-linear-gradient(top, #3e779d, #2A3A46);
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+    height: 20px;
+} 
 .button:hover {
    border-top-color: #28597a;
    background: #28597a;
@@ -304,17 +320,3 @@ div {overflow: hidden;} */
    border-top-color: #1b435e;
    background: #1b435e;
 }
-
-.yt-info .remove {
-    border: 3px solid #0a0a0a;
-    border-radius: 100%;
-    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-    background: rgb(240,240,240);
-    font-weight: bold;
-    position: absolute;
-    top: -70px;
-    left: -7px;
-    z-index: 100;
-
-}
-.red {background: red;}
