@@ -75,6 +75,11 @@ class videos_controller extends base_controller {
             $data['created']  = Time::now();
             $data['last_played'] = $last_played;
             $yt_info = AppUtils::ytv_get_info($data['yt_video_id']);
+            # check if Embedded functionality is disabled
+            if ($yt_info == NULL)
+            {
+                return NULL;
+            }
             $data['yt_title'] = $yt_info['title'];
             $data['thumbnail_url'] = $yt_info['thumbnail_url'];
             # make sure yt_video_id has not been added by this user already
@@ -101,6 +106,10 @@ class videos_controller extends base_controller {
         }
 
         $data = $this->p_add_to_db(0);
+        if ($data == NULL) {
+            echo "Aborting: Embedded functionality is Disabled for this video. Please try another URL...";
+            return;
+        }
     
         # Setup view to display results
         $view = View::instance('v_videos_p_add');
@@ -122,8 +131,7 @@ class videos_controller extends base_controller {
         $_POST['playlist_name'] = "DEFAULT";
 
         $data = $this->p_add_to_db(Time::now());
-        # Let's create a history table to track played videos for each user
-        # TBD
+        
     }
     # function index() lists all the videos of members being followed
     # it also list own videos.

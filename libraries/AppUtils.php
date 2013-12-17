@@ -28,8 +28,15 @@ class AppUtils {
         
         $content = file_get_contents("http://youtube.com/get_video_info?video_id=".$yt_video_id);
         parse_str($content, $ytarr);
-        $video['title'] = $ytarr['title'];
-        $video['thumbnail_url'] = $ytarr['thumbnail_url'];
-        return $video;
+        if (isset($ytarr['title']) && isset($ytarr['thumbnail_url'])) {
+            $video['title'] = $ytarr['title'];
+            $video['thumbnail_url'] = $ytarr['thumbnail_url'];
+            return $video;
+        }
+        else {
+            // Embedded Disabled
+            return NULL;
+        }
+        
     }
 } #eoc    
