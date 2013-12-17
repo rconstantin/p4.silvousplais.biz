@@ -6,6 +6,7 @@ var options = {
     },
     success: function(response) {
         $('#results').html(response);
+        setTimeout(function() {location.reload();}, 5000);
     },
 };
 

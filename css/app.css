@@ -280,7 +280,7 @@ a.remove {
     background: rgb(240,240,240);
     font-weight: bold;
     position: absolute;
-    top: -12px;
+    top: -10px;
     left: -7px;
     z-index: 100;
 
