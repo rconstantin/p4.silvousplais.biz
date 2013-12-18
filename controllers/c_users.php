@@ -69,9 +69,6 @@ class users_controller extends base_controller {
         }
         # DB Validation that new user email is not already in use
         if (!$error) {
-           # NEED NEW API to return count...  
-           # $result = DB::instance(DB_NAME)->queryCount($q);
-           # $q = "SELECT COUNT(*) FROM users WHERE email = '".$_POST['email']."'";
 
             $q = "SELECT COUNT(*) FROM users WHERE email = '".$_POST['email']."'";
             $result = DB::instance(DB_NAME)->select_field($q);

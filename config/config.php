@@ -19,7 +19,9 @@ If you want a different default time format for this app, set it below
 # Default Avatar URL
 	define('DEFAULT_AVATAR_URL', 'yt.jpg');
 
-
+# Max Videos stored per user (could be moved to DB in the future)
+	define('MAX_VIDEOS_PER_USER', 100);
+	define('TOP_VIDEOS_PER_FELLOW', 12);
 # When email is sent out from the server, where should it come from?
 # Ideally, this should match the domain name
 	define('APP_EMAIL', 'robbieconstantin@gmail.com'); 

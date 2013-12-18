@@ -17,6 +17,7 @@ $('#yt-video-clear').on('click',function() {
     player.destroy();
     location.reload();
 });
+
 $('.yt-info').hover(function() {
     $('.yt-info-full', $(this)).slideToggle(100, 'linear');
 });
@@ -72,9 +73,6 @@ function onPlayerStateChange(evt) {
             url: '/videos/p_playing/',
             success: function(response) { 
 
-                // For debugging purposes
-                // console.log("SUCCESS!!!");
-
             },
             data: {
                 yt_url: youtube_url,
@@ -82,15 +80,8 @@ function onPlayerStateChange(evt) {
         });
     }
 }
-// jquery plugin for dialog window
-// $(function() {
-//     $( "#dialog" ).dialog();
-// });
-
-// Delete Confirmation TBD
 
 $("a.remove").on("click",function(event){
-//   if(confirm("Are you sure you want to delete this Video?")) {
         var video_id = $(this).attr("id");
         $.ajax({
             type: 'POST',
@@ -105,7 +96,5 @@ $("a.remove").on("click",function(event){
                 yt_video_id: video_id,
             },
         });
-//   }
-   
 });
 

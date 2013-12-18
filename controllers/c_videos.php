@@ -42,6 +42,16 @@ class videos_controller extends base_controller {
         }
         return $playlist_id;
     }
+    # utility function to check if max videos quota for this user reached and if so to make room for new video
+    public function p_check_vlist($user_id) {
+        $q = "SELECT COUNT(*) FROM videos WHERE user_id = ". $user_id;
+        $result = DB::instance(DB_NAME)->select_field($q);
+        if ($result >= MAX_VIDEOS_PER_USER) {
+            $wc = "WHERE last_played = (SELECT MIN(NULLIF(last_played,0)) FROM videos WHERE user_id = " .$user_id;
+
+            DB::instance(DB_NAME)->delete('videos', $wc);
+        }
+    }
     public function p_add_to_db($last_played) {
     
         # Associate this video with this user
@@ -83,7 +93,8 @@ class videos_controller extends base_controller {
             $data['yt_title'] = $yt_info['title'];
             $data['thumbnail_url'] = $yt_info['thumbnail_url'];
             # make sure yt_video_id has not been added by this user already
-            # TBD DB Check
+            # check if max videos per user reached and if so remove the oldest
+            $this->p_check_vlist($data['user_id']);
             # Insert
             # Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
             DB::instance(DB_NAME)->insert('videos', $data);
@@ -135,14 +146,17 @@ class videos_controller extends base_controller {
     }
     # function index() lists all the videos of members being followed
     # it also list own videos.
-    public function index() {
+    # option: 0 (view all videos from self users followed by self)
+    # option: 1 (view all of this users videos)
+    # option: 2 (view 10 most recently played videos by this users and those he is following)
+    public function index($option=0) {
         # Set up the View
         $this->template->content = View::instance('v_videos_index');
         $this->template->title = "Videos";
 
         # query that will only allow to display videos of folks
         # being followed by logged in user
-
+        # common part of clause for all options:
         $q = 'SELECT
                 videos.video_id,
                 videos.yt_video_id,
@@ -160,15 +174,24 @@ class videos_controller extends base_controller {
               INNER JOIN users_users 
                 ON videos.user_id = users_users.user_id_followed
               INNER JOIN users
-                ON videos.user_id = users.user_id
-              WHERE users_users.user_id = '.$this->user->user_id .' ORDER BY video_user_id, videos.last_played DESC';
-
+                ON videos.user_id = users.user_id';
+        # WHERE clause is same for all videos and top 10. The view foreach will limit display to 10 for option 2.        
+        if ($option != 2) {
+            $q = $q . ' WHERE users_users.user_id = '.$this->user->user_id;
+        }
+        else {
+            # WHERE clause only picks up videos and some user info for this user only
+            $q = $q . ' WHERE users_users.user_id = '.$this->user->user_id .' AND users_users.user_id_followed = '.$this->user->user_id;
+        }
+        # common ordering part:
+        $q = $q  .' ORDER BY video_user_id, videos.created DESC';
+        # Policy decision: for options 0 and 2, ALL will be set to 100 videos per user.
         # Run this query
         $videos = DB::instance(DB_NAME)->select_rows($q);
         
         # Pass this data to the view
         $this->template->content->videos = $videos;
-
+        $this->template->content->vlimit = ($option == 1) ? 10 : 100;
         # Render this view
         $client_files_body = Array("/js/videos_playYTvideo.js");
         $this->template->client_files_body = Utils::load_client_files($client_files_body);
@@ -234,7 +257,6 @@ class videos_controller extends base_controller {
         $where_clause = 'WHERE video_id =' .$_POST['yt_video_id'];
         # delete video from DB
         DB::instance(DB_NAME)->delete('videos',$where_clause);
-        # Router::redirect("/videos/index");
 
     }
     # update text of a video
@@ -252,28 +274,7 @@ class videos_controller extends base_controller {
         # Render template
         echo $this->template;
     }
-    public function p_modify($video_id) {
-        # validate that video is not rendered empty
-        $_POST['content'] = AppUtils::test_input($_POST['content']);
-        if (empty($_POST['content']))
-        {
-            $error = "videoEmpty";
-            Router::redirect("/videos/modify/$video_id/$error");
-        }
-        
-        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
-        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
-        # build query statement
-        $data = Array (
-            "modified" => Time::now(),
-            "content" => $_POST['content']);
-        
-        $where_clause = "WHERE video_id=" .$video_id;
-        DB::instance(DB_NAME)->update_row('videos', $data, $where_clause);
-
-        # redirect to list of videos
-        Router::redirect('/videos/index');
-    }
+    
     # display list of followers of this $user
     public function followers() {
         # Set up the View

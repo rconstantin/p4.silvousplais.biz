@@ -201,7 +201,7 @@ div {overflow: hidden;} */
 #nav {
     width: 100%;
     float: left;
-    margin: 0 0 3em 0;
+ /*   margin: 0 0 3em 0;*/
     padding: 0;
     list-style: none;
 }
@@ -233,7 +233,7 @@ div {overflow: hidden;} */
     background-color:rgba(251, 93, 0, .8);
     padding: 0.5em;
 }
-
+/*.index-view-full {visibility: hidden;}*/
 .floatcircright
 {
     float: right;

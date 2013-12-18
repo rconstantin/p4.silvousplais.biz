@@ -19,7 +19,7 @@
         <header>
             <h1> 
                 <?php if((!$user) OR (!$user->avatarUrl)): ?>
-                    <img class="floatright" src="/uploads/avatars/yt.jpg" alt="" width="100" height="100">
+                    <img class="floatright" src="/uploads/avatars/yt.jpg" alt="" width="80" height="80">
                 <?php else : ?>
                      <img class="floatcircright" src="/uploads/avatars/<?=$user->avatarUrl?>" alt="" width="80" height="80">
                 <?php endif; ?>   
