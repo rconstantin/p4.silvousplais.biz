@@ -1,10 +1,10 @@
 
 <div class="yt-info">
-    <span> <img name="<?=$yt_video_id?>" class="thumbnail" src="<?=$thumbnail_url?>" alt="" width="60" height="60" data-options="{id:<?=$yt_video_id?>}"></span>
-    <span class="yt-info-full">
-            <h2>(click on thumbnail to play video)</h2>
-            <p1>Added on: <?=Time::display($add_time);?><br>
-            <div id="yt_video_id"> Title: <?=$title?>  </p1>
+    <span> <img name="<?=$yt_video_id?>" class="thumbnail" src="<?=$thumbnail_url?>" alt="" width="180" height="160" left="300px" !important data-options="{id:<?=$yt_video_id?>}"></span>
+    <span class="yt-info-full"> 
+            <p4>(click on thumbnail to <font color='red'>play </font>video)<br>
+            Added on: <?=Time::display($add_time);?><br>
+            <div id="yt_video_id"> Title: <?=$title?>  </p4>
     </span>   
 
 </div>

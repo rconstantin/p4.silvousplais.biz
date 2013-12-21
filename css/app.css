@@ -32,29 +32,30 @@ section {
     margin: 10px;
     background-color: rgb(180,250,250);
     text-align: left;
-    height: 600px;
+    height: 800px;
     overflow: auto;
 }
-
+section#v_menu {
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
 h1, h2 {
-    font-family: 'AmalgamationRegular';
-    color: rgb(200,0,0);
-    text-shadow: 1px 1px 2px #000000;
-    font-style: italic;
+    font-family: '"Helvetica Neue", Helvetica, Arial, sans-serif';
+    color: rgb(200,0,0) !important;
 }
 h3 {
     font-family: 'AmalgamationRegular';
-    color: rgb(200,0,0);
+    color: rgb(200,0,0) !important;
     text-shadow: 1px 1px 2px #000000;
     font-style: italic;
     text-align: right;
 }
 h4 {
     font-family: 'AmalgamationRegular';
-    color: rgb(200,0,0);
+    color: rgb(200,0,0) !important;
     text-shadow: 1px 1px 2px #000000;
-    font-style: italic;
-    text-align: center;
+    text-align: center !important;
 }
 h5 {
     font-family: 'AmalgamationRegular';
@@ -83,9 +84,8 @@ p2 {
 }
 p3 {
     font-family: 'AmalgamationRegular';
-    color: green;
-    font-size: 1em;
-    font-style: italic;
+    color: inherit;
+    font-size: 30px;
     text-shadow: 1px 1px 1px #000000;
 }
 mark.green {
@@ -93,7 +93,6 @@ mark.green {
     color:green;
     background: none;
     font-style: italic;
-    text-shadow: 1px 0.5px 0.5px #000000;
     float: left;
 }
 
@@ -107,8 +106,7 @@ a {
 
 /* Setting text area size and style */
 textarea#url {
-    width: 300px;
-    height: 15px;
+    height: 35px;
     border: 3px solid #cccccc;
     padding: 5px;
     font-family: Tahoma, sans-serif;
@@ -117,8 +115,8 @@ textarea#url {
 }
 /* Setting text area size and style */
 input#playlist{
-    width: 120px;
-    height: 15px;
+    width: 220px;
+    height: 35px;
     border: 3px solid #cccccc;
     padding: 5px;
     font-family: Tahoma, sans-serif;
@@ -130,8 +128,6 @@ input#playlist{
 }
 
 .thumbnail {
-    width: 80px;
-    height: 60px;
     background-position:center;
     margin: 0 0 10px 10px;
     border: 2px solid #666;
@@ -139,6 +135,9 @@ input#playlist{
     padding: 2px;
     cursor: pointer;
     float: left;
+    position: absolute;
+    top:10px;
+    left:400px;
 
 }
 
@@ -150,25 +149,26 @@ input#playlist{
 /* || overall positioning and navigation */
 
 #wrapper {
-    width: 857px;
+    width: auto;
     margin: 0 auto;
     position: relative;
 }
 
 #ytv {
-    width: 840px;
+    width: 960px;
     margin: 0 auto;
     position: absolute;
-    top: 239px;
-    left: 8px;
+    top: 150px;
+    left: 29px;
 }
 #yt-video-clear {
-    width: 820px;
+    width: 960px;
+    height: 28px;
     margin: 0 auto;
     position: absolute;
     text-align: center;
-    top: 240px;
-    left: 9px;
+    top: 150px;
+    left: 29px;
     z-index: 1;
 }
 .yt-thumbnail {
@@ -187,31 +187,35 @@ input#playlist{
     background-color: rgb(240,240,240);
     font: bold smaller sans-serif;
     position: absolute;
-    top: 0px;
-    left: 120px;
+    top: 20px;
+    left: 530px;
 }
 .yt-info, .yt-info-full { cursor: pointer;}
 .yt-info-full {display: none;}
-/*.yt-info span {float: left;}
-div {overflow: hidden;} */
+.dropdown-menu-var {
+    min-width: 135px !important;
+    background-color: inherit !important;
+}
 /* || styling the document parts */
 
 .error {color: rgb(200,0,0);}
 
+#menu {
+    padding-bottom: 10px;
+}
 #nav {
     width: 100%;
     float: left;
- /*   margin: 0 0 3em 0;*/
-    padding: 0;
+    padding: 5px;
     list-style: none;
 }
 #nav li {
- /*   position:relative;*/
+
     float: left; 
 }
 #nav li a {
     display: block;
-    padding: 2px 6px;/*padding: 8px 15px;*/
+    padding: 2px 6px;
     text-decoration: none;
     font-weight: bold;
     color: green;
@@ -233,6 +237,7 @@ div {overflow: hidden;} */
     background-color:rgba(251, 93, 0, .8);
     padding: 0.5em;
 }
+
 /*.index-view-full {visibility: hidden;}*/
 .floatcircright
 {
@@ -280,8 +285,8 @@ a.remove {
     background: rgb(240,240,240);
     font-weight: bold;
     position: absolute;
-    top: -10px;
-    left: -7px;
+    top: 44px;
+    left: 395px;
     z-index: 100;
 
 }
@@ -319,4 +324,10 @@ a.remove {
 .button:active {
    border-top-color: #1b435e;
    background: #1b435e;
+}
+.control-label {
+float: left;
+width: 160px;
+padding-top: 5px;
+text-align: right;
 }

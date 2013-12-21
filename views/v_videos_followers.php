@@ -11,8 +11,8 @@
             <img class="circular" src="/uploads/avatars/<?=$follower['avatarUrl']?>" 
                 alt="" width="80" height="80">
         <?php endif; ?> <br>
-        Follower Since: 
-            <?=Time::display($follower['follower_since'],'',$follower['timezone'])?>
+        <font color=green> Follower Since: 
+            <?=Time::display($follower['follower_since'],'',$follower['timezone'])?></font>
          
          <br><br>
     <? endforeach; ?>

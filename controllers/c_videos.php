@@ -24,7 +24,7 @@ class videos_controller extends base_controller {
         $this->template->title   = "New video";
         $this->template->content->error = $error;
         # load JS files
-        $client_files_body = Array(
+        $client_files_body = Array(           
             "/js/jquery.form.js",
             "/js/videos_add.js");
         $this->template->client_files_body = Utils::load_client_files($client_files_body);
@@ -61,8 +61,13 @@ class videos_controller extends base_controller {
         
         # get yt_video id from url
         preg_match('/[?&]v=([^&]+)/', $_POST['yt_url'], $ytv_id);
-        $data['yt_video_id'] = $ytv_id[1];
-        
+        if (!empty($ytv_id)) {
+            $data['yt_video_id'] = $ytv_id[1];
+        }
+        else {
+            echo "Input Error: illegal youtube URL!";
+            return NULL;
+        }
         # Check to see if this video has already been added by this user
         $wc = "WHERE yt_video_id = '".$data['yt_video_id']."' AND user_id = ".$data['user_id'];
         $q = "SELECT created,yt_title,thumbnail_url FROM videos ".$wc;
@@ -88,6 +93,7 @@ class videos_controller extends base_controller {
             # check if Embedded functionality is disabled
             if ($yt_info == NULL)
             {
+                echo "Aborting: Embedded functionality is Disabled for this video. Please try another URL...";
                 return NULL;
             }
             $data['yt_title'] = $yt_info['title'];
@@ -118,7 +124,6 @@ class videos_controller extends base_controller {
 
         $data = $this->p_add_to_db(0);
         if ($data == NULL) {
-            echo "Aborting: Embedded functionality is Disabled for this video. Please try another URL...";
             return;
         }
     
@@ -193,7 +198,8 @@ class videos_controller extends base_controller {
         $this->template->content->videos = $videos;
         $this->template->content->vlimit = ($option == 1) ? 10 : 100;
         # Render this view
-        $client_files_body = Array("/js/videos_playYTvideo.js");
+        $client_files_body = Array(
+            "/js/videos_playYTvideo.js");
         $this->template->client_files_body = Utils::load_client_files($client_files_body);
         echo $this->template;      
     }
@@ -254,27 +260,30 @@ class videos_controller extends base_controller {
     # Delete a video from videos table
     public function delete() {
         # prepare where clause to delete video
-        $where_clause = 'WHERE video_id =' .$_POST['yt_video_id'];
+        $where_clause = "WHERE yt_video_id = '" .$_POST['yt_video_id']. "' AND user_id = " .$this->user->user_id;
+
         # delete video from DB
         DB::instance(DB_NAME)->delete('videos',$where_clause);
 
     }
-    # update text of a video
-    public function modify($video_id, $error = NULL) {
-        # query statement
-        $q = 'SELECT content FROM videos WHERE video_id =' .$video_id;
+    # Delete All errored Videos detected during playback
+    public function deleteAll() {
+        # extract yt_video_id from url
+        preg_match('/[?&]v=([^&]+)/', $_POST['yt_url'], $ytv_id);
+        if (!empty($ytv_id)) {
+            $yt_video_id = $ytv_id[1];
+        }
+        else {
+            echo "Input Error: illegal youtube URL!";
+            return NULL;
+        }
+        # prepare where clause to delete video
+        $where_clause = "WHERE yt_video_id = '".$yt_video_id ."'";
+        echo "Where clause for Deleting bad video = " . $where_clause;
         # delete video from DB
-        $video_text = DB::instance(DB_NAME)->select_field($q);
-        # Setup view
-        $this->template->content = View::instance('v_videos_modify');
-        $this->template->title   = "Modify video";
-        $this->template->content->video_text = $video_text;
-        $this->template->content->video_id = $video_id;
-        $this->template->content->error = $error;
-        # Render template
-        echo $this->template;
+        DB::instance(DB_NAME)->delete('videos',$where_clause);
+
     }
-    
     # display list of followers of this $user
     public function followers() {
         # Set up the View

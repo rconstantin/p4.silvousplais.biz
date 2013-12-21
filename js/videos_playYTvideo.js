@@ -37,8 +37,8 @@ $('.thumbnail').on('click', function() {
             modestbranding:'1',
             autohide: '1'
         },
-        height: '472.5',
-        width: '840',
+        height: '540',
+        width: '960',
         videoId: yt_video_id,
         events: {
             'onReady': onPlayerReady,
@@ -54,8 +54,19 @@ function onPlayerReady(evt) {
 
 }
 function onPlayerError(evt) {
-    console.log('onError',evt);
-    // cleanup...
+    //console.log(onPlayerError,evt)
+    var youtube_url = evt.target.getVideoUrl();
+    //console.log('Video in Error to remove from db', youtube_url);
+    $.ajax({
+        type: 'POST',
+        url: '/videos/deleteAll/',
+        success: function(response) { 
+            alert("Successfully deleted all references to this video");
+        },
+        data: {
+            yt_url: youtube_url,
+        },
+    });
 }
 
 $('#ytv').on('click', function () {
@@ -87,10 +98,8 @@ $("a.remove").on("click",function(event){
             type: 'POST',
             url: '/videos/delete/',
             success: function(response) { 
-
                 alert("Video removed!");
                 location.reload();
-
             },
             data: {
                 yt_video_id: video_id,

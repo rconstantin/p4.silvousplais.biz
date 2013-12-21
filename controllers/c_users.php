@@ -23,50 +23,39 @@ class users_controller extends base_controller {
         $this->template->content->email = $email;
         $this->template->title = "Sign Up to " . APP_NAME;
         #load JS 
-        $client_files_head = Array("/js/jquery-2.0.0.js", "/js/jstz-1.0.4.min.js");
+
+        $client_files_head = Array(
+            "/css/users_login.css",
+            "/js/jstz-1.0.4.min.js");
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
+    
+        $client_files_body = Array(
+            "/js/validation.min.js",
+            "/js/jquery.form.js",
+            "/js/users_signup.js");
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);
 
         # Render template
         echo $this->template;
     }
 
     public function p_signup() {
-        # Validate that all required signup fields are not empty
-        # for simplicity of logic and to use single error code - set
-        # error to missing field.
-        
-        $error = '';
-        if (empty($_POST['first_name'])) 
-        {
-            $error = 'InvalidFirstName';
-        }
-        else {
-            $_POST['first_name'] = AppUtils::test_input($_POST['first_name']);
-        }
-        if (empty($_POST['last_name'])) {
-            $error = 'InvalidLastName';
-        }
-        else {
-            $_POST['last_name'] = AppUtils::test_input($_POST['last_name']);
-        }
-        if (empty($_POST['email'])) {
-            $error = 'InvalidEmail';
-        }
-        else {
-            $_POST['email'] = AppUtils::test_input($_POST['email']);
-            if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST['email']))
-            {
-                $error = "InvalidEmail";
-                $_POST['email'] = '';
-            }
 
+        # Empty validation is done at the client side via javascript validation plugin
+        # 
+        $_POST['first_name'] = AppUtils::test_input($_POST['first_name']);
+        
+        $_POST['last_name'] = AppUtils::test_input($_POST['last_name']);
+        
+        $_POST['email'] = AppUtils::test_input($_POST['email']);
+
+        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST['email']))
+        {
+            $error = "InvalidEmail";
+            $_POST['email'] = '';
         }
-        if (empty($_POST['password'])) {
-            $error = 'InvalidPassword';
-        }
-        else {
-            $_POST['password'] = AppUtils::test_input($_POST['password']);
-        }
+        $_POST['password'] = AppUtils::test_input($_POST['password']);
+        
         # DB Validation that new user email is not already in use
         if (!$error) {
 
@@ -74,57 +63,29 @@ class users_controller extends base_controller {
             $result = DB::instance(DB_NAME)->select_field($q);
           
             if ($result > 0) {
-                $error = 'InvalidEmail';
+                $error = 'Invalid Email';
                 $_POST['email'] = '';
             }
         }
         
-        # prepare signup params to pass back
-        $lastName = $_POST['last_name'];
-        $firstName = $_POST['first_name'];
-        $email = $_POST['email'];
         if ($error != '') {
-            # send back to signup page
-            Router::redirect("/users/signup/$firstName/$lastName/$email/$error");
+
+            echo $error;
         }
         else {
             # validate email domain and if valid send signup email
             $result = $this->p_signup_email();
             if ($result == false) {
                 # reset email sent back to signup 
-                $error = 'InvalidEmail';
-                $email = '';
-                # send back to signup page
-                Router::redirect("/users/signup/$firstName/$lastName/$email/$error");
+                $error = 'Invalid Email';
+                echo $error;
             }
-            /* replace by core signup util function
-            # insert time (timestamp) of creation and last modify with user
-            $_POST['created'] = Time::now();
-            $_POST['modified'] = Time::now();
-            # default AvatarUrl to streamline code and avoid extra checking down the road
-            $_POST['avatarUrl'] = DEFAULT_AVATAR_URL;
-
-            #Encrypt Password
-            $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-            # create an encripted Token based on the email address and a random string
-            $_POST['token'] = sha1(TOKEN_SALT.$_POST['email']).Utils::generate_random_string();
-            # insert row into DB
-            $user_id = DB::instance(DB_NAME)->insert('users', $_POST);
-
-            # insert a row in users_users table for always following self
-            $data = Array (
-            "created" => Time::now(),
-            "user_id" => $user_id,
-            "user_id_followed" => $user_id);
-
-            # insert array into users_users table
-            DB::instance(DB_NAME)->insert('users_users', $data); 
-            */
+ 
             $_POST['avatarUrl'] = DEFAULT_AVATAR_URL;
             $user = $this->userObj->signup($_POST);
             if ($user == false) {
-                $error = 'failedSignup';
-                Router::redirect("/users/signup/$firstName/$lastName/$email/$error");
+                $error = 'Failed Signup';
+                echo $error;
             }
             else {
                 # insert a row in users_users table for always following self
@@ -135,11 +96,11 @@ class users_controller extends base_controller {
 
                 # insert array into users_users table
                 DB::instance(DB_NAME)->insert('users_users', $data); 
-                # redirect to profile page not requiring additional step to login
-                # $this->p_common_login($user['token']);
+                # login user to be redirected to profile via javascript back in the signup view.
                 $token = $this->userObj->login($_POST['email'], $_POST['password'], $_POST['timezone']);
-                # redirect new user to profile page
-                Router::redirect("/users/profile");
+                
+                echo "Congratulation";
+                
             }
         }
     }
@@ -193,8 +154,18 @@ class users_controller extends base_controller {
         $this->template->content->email = $email;
         $this->template->content->error = $error;
         #load JS 
-        $client_files_head = Array("/js/jquery-2.0.0.js", "/js/jstz-1.0.4.min.js");
+        $client_files_head = Array(
+       #     "/css/bootstrap.min.css",
+            "/css/users_login.css",
+            "/js/jquery-2.0.0.js", 
+            "/js/jstz-1.0.4.min.js");
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
+        $client_files_body = Array(
+            "/js/jquery.form.js",
+            "/js/users_login.js");
+        $this->template->client_files_body = Utils::load_client_files($client_files_body);
+        /*
+        */
         # Render template
         echo $this->template;
     }
@@ -202,71 +173,22 @@ class users_controller extends base_controller {
     public function p_login()
     {
         
-        $error = '';
+        $result = 'Success';
 
         # Validate input parameter
-        if (empty($_POST['email'])) {
-            $error = 'InvalidEmail';
-        }
-        else {
-            $_POST['email'] = AppUtils::test_input($_POST['email']);
-        }
-        if (empty($_POST['password'])) {
-            $error = 'InvalidPassword';
-        }
-        else {
-            $_POST['password'] = AppUtils::test_input($_POST['password']);
-        }
-        if ($error!= '')
-        {
-            if ($error != 'InvalidEmail') {
-                $email = $_POST['email'];
-            }
-            else {
-                $email = '';
-            }
-            # send back to login page, return email and error
-            Router::redirect("/users/login/$email/$error");
-        }
-        /*
-        # Sanitize the user entered data to prevent any funny-business (re: SQL Injection Attacks)
-        $_POST = DB::instance(DB_NAME)->sanitize($_POST);
-
-        # Hash submitted password so we can compare it against one in the db
-        $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
-
-        # Search the db for this email and password
-        # Retrieve the token if it's available
-        $q = "SELECT token 
-            FROM users 
-            WHERE email = '".$_POST['email']."' 
-            AND password = '".$_POST['password']."'";
-
-        $token = DB::instance(DB_NAME)->select_field($q);
-        $email = $_POST['email'];
-        # If we didn't find a matching token in the database, it means login failed
-        if(!$token) {
-            $error = "PasswordMismatch";
-            # Send them back to the login page
-            Router::redirect("/users/login/$email/$error");
-        }
-        else {
-            $this->p_common_login($token);
-            # Since we found a token, login successfull redirect to menu page
-            Router::redirect("/");
-        }
-        */
+       
+        $_POST['email'] = AppUtils::test_input($_POST['email']);
+        
+        $_POST['password'] = AppUtils::test_input($_POST['password']);
+ 
         # use core login API - updates timezone is updated here:
         $token = $this->userObj->login($_POST['email'], $_POST['password'], $_POST['timezone']);
         if ($token == false) {
-            $error = 'InvalidPassword';
-            $email = $_POST['email'];
-            Router::redirect("/users/login/$email/$error");
+            $result = 'Invalid Password';
+           
         }
-        else {
-            # Since we found a token, login successfull redirect to menu page
-            Router::redirect("/");
-        }
+        # return to view and rely on ajax to redirect the user to the home page
+        echo $result;
     }
     # common login processing funtion used in the login and signup process
     public function p_common_login($token)
@@ -357,19 +279,11 @@ class users_controller extends base_controller {
             # render view
             echo $view;
 
-            #$js_data['upload_time'] = Time::now();
-            #$js_data['avatar_url'] = $avatarUrl;
-            # send back json results to the JS, formatted in JSON
-            #json_encode($js_data);
-
-            # echo $view;
         }
         else {
-            $error = 'InvalidFileType';
-            Router::redirect("/users/profile/$error");
+            $error = 'Invalid File Type';
+            echo $error;
         }
-        # Don't Send them back to the main index.
-        # Router::redirect("/");
 
     }
     public function p_user_stats() {

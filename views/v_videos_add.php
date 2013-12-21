@@ -1,8 +1,9 @@
-<div id='form-view'>
-    <form method='POST' action='/videos/p_add'>
-        <!-- <span class="error"> <?php if (isset($error)) {echo 'Cannot submit an empty URL!';}?></span> -->
-        <!-- <h2><label for='url'>Enter a youtube URL here:</label></h2> -->
-        <textarea name='yt_url' id='url' placeholder="Enter youtube URL"></textarea>
+<div id='form-view' class="container">
+    <form class="form-signin" role="form" method='POST' action='/videos/p_add'>
+        <br><br><br>
+        <h2 class="form-signin-heading">Cut&Paste a youtube URL from a youtube player</h2>
+        <textarea class="form-control" name='yt_url' id='url' placeholder="Enter youtube URL" required autofocus></textarea>
+        <br>
         <div class="playlist-drawer"> 
             <div class="added-to-list"></div>
         </div>
