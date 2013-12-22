@@ -8,15 +8,15 @@
         <?=$user['first_name']?> <?=$user['last_name']?> <br>
         <?php if(isset($user['avatarUrl'])): ?>
             <img class="circular" src="/uploads/avatars/<?=$user['avatarUrl']?>" 
-                alt="" width="80" height="80">
+                alt="" width="100" height="100">
         <?php endif; ?> 
         <br>
         <? if(isset($connections[$user['user_id']])): ?>
-            <a class="button" href='/videos/unfollow/<?=$user['user_id']?>'>Unfollow</a>
+            <a class="btn btn-primary" href='/videos/unfollow/<?=$user['user_id']?>'>Unfollow</a>
 
             <!-- Otherwise, show the follow link -->
         <? else: ?>
-            <a class="button" href='/videos/follow/<?=$user['user_id']?>'>Follow</a>
+            <a class="btn btn-primary" href='/videos/follow/<?=$user['user_id']?>'>Follow</a>
         <? endif; ?>  
     
         <br> <br>

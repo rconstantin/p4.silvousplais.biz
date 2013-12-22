@@ -9,7 +9,7 @@
         <?=$follower['first_name']?> <?=$follower['last_name']?> <br>
         <?php if(isset($follower['avatarUrl'])): ?>
             <img class="circular" src="/uploads/avatars/<?=$follower['avatarUrl']?>" 
-                alt="" width="80" height="80">
+                alt="" width="100" height="100">
         <?php endif; ?> <br>
         <font color=green> Follower Since: 
             <?=Time::display($follower['follower_since'],'',$follower['timezone'])?></font>

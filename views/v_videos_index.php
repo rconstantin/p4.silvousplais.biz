@@ -30,7 +30,7 @@
     </div>    
     <?php if ($video_cnt < $vlimit): ?>
         <?php $video_cnt++ ?>
-        <div id='yt-video-clear' class='button hidden' >Destroy YTV</div><br>
+        <div id='yt-video-clear' class='btn btn-primary hidden' >Destroy YTV</div><br>
         <div id="ytv"></div>
         <div class="yt-info">
             <span> 
