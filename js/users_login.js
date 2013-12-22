@@ -9,10 +9,10 @@ var options = {
         $('#output').html(response);
         // setTimeout(function() {location.reload();}, 5000);
         if (response == "Success") {
-            $('#output').append("... Going to Home page in 1 seconds!");
+            $('#output').append("... Going to Home page in 500 msecs!");
             setTimeout(function() {
             window.location.href = "/";
-            }, 1000);
+            }, 500);
         }
         else {
             $('#output').append("... Please try again.");

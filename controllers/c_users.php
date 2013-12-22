@@ -26,7 +26,9 @@ class users_controller extends base_controller {
 
         $client_files_head = Array(
             "/css/users_login.css",
+            "/js/jquery-2.0.0.js",
             "/js/jstz-1.0.4.min.js");
+            
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
     
         $client_files_body = Array(
@@ -43,17 +45,14 @@ class users_controller extends base_controller {
 
         # Empty validation is done at the client side via javascript validation plugin
         # 
+        $error = '';
+
         $_POST['first_name'] = AppUtils::test_input($_POST['first_name']);
         
         $_POST['last_name'] = AppUtils::test_input($_POST['last_name']);
         
         $_POST['email'] = AppUtils::test_input($_POST['email']);
 
-        if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$_POST['email']))
-        {
-            $error = "InvalidEmail";
-            $_POST['email'] = '';
-        }
         $_POST['password'] = AppUtils::test_input($_POST['password']);
         
         # DB Validation that new user email is not already in use
@@ -63,46 +62,44 @@ class users_controller extends base_controller {
             $result = DB::instance(DB_NAME)->select_field($q);
           
             if ($result > 0) {
-                $error = 'Invalid Email';
-                $_POST['email'] = '';
+                # bailout with this error
+                echo 'Duplicate Email';
+                return;
             }
         }
         
-        if ($error != '') {
+        
+        # validate email domain and if valid send signup email
+        $error = $this->p_signup_email();
+        if ($error == false) {
+            # reset email sent back to signup 
+            $error = 'Invalid Email';
+            echo $error;
+            return;
+        }
 
+        $_POST['avatarUrl'] = DEFAULT_AVATAR_URL;
+        $user = $this->userObj->signup($_POST);
+        if ($user == false) {
+            $error = 'Failed Signup';
             echo $error;
         }
         else {
-            # validate email domain and if valid send signup email
-            $result = $this->p_signup_email();
-            if ($result == false) {
-                # reset email sent back to signup 
-                $error = 'Invalid Email';
-                echo $error;
-            }
- 
-            $_POST['avatarUrl'] = DEFAULT_AVATAR_URL;
-            $user = $this->userObj->signup($_POST);
-            if ($user == false) {
-                $error = 'Failed Signup';
-                echo $error;
-            }
-            else {
-                # insert a row in users_users table for always following self
-                $data = Array (
-                    "created" => Time::now(),
-                    "user_id" => $user['user_id'],
-                    "user_id_followed" => $user['user_id']);
+            # insert a row in users_users table for always following self
+            $data = Array (
+                "created" => Time::now(),
+                "user_id" => $user['user_id'],
+                "user_id_followed" => $user['user_id']);
 
-                # insert array into users_users table
-                DB::instance(DB_NAME)->insert('users_users', $data); 
-                # login user to be redirected to profile via javascript back in the signup view.
-                $token = $this->userObj->login($_POST['email'], $_POST['password'], $_POST['timezone']);
-                
-                echo "Congratulation";
-                
-            }
+            # insert array into users_users table
+            DB::instance(DB_NAME)->insert('users_users', $data); 
+            # login user to be redirected to profile via javascript back in the signup view.
+            $token = $this->userObj->login($_POST['email'], $_POST['password'], $_POST['timezone']);
+            
+            echo "Congratulation";
+            
         }
+    
     }
     public function p_signup_email()
     {
@@ -155,12 +152,12 @@ class users_controller extends base_controller {
         $this->template->content->error = $error;
         #load JS 
         $client_files_head = Array(
-       #     "/css/bootstrap.min.css",
-            "/css/users_login.css",
-            "/js/jquery-2.0.0.js", 
+            "/css/users_login.css", 
+            "/js/jquery-2.0.0.js",
             "/js/jstz-1.0.4.min.js");
         $this->template->client_files_head = Utils::load_client_files($client_files_head);
         $client_files_body = Array(
+ 
             "/js/jquery.form.js",
             "/js/users_login.js");
         $this->template->client_files_body = Utils::load_client_files($client_files_body);

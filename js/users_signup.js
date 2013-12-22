@@ -50,13 +50,12 @@ $(function(){
 				minlength: 6,
 				maxlength: 12
 			},
-			// password2 field must be equal to password field
-			password2: {
-				equalTo: '#password'
-			},
 			// email field only required
-			email: 'required'
+			email: {
+				required: true,
+			}
 		},
+		ignore: ":hidden"
 	});
 });
 
@@ -69,13 +68,14 @@ var options = {
 	success: function(response) { 
 		// Let's inject that data into the page 
 		$('#output').html(response);
-		if (response == "Congratulation") {
-			$('#output').append("... Going to Profile page in 2 seconds!");
+		if (response === "Congratulation") {
+			$('#output').append("... Going to Profile page in 1 seconds!");
 			setTimeout(function() {
-  			window.location.href = "/users/profile";
-			}, 2000);
+  				window.location.href = "/users/profile";
+				}, 1000);
 		}
 		else {
+			//window.location.href = "/users/signup";
 			$('#output').append("... Please try again.");
 		}
 	}, 

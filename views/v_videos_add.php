@@ -12,6 +12,6 @@
         <input type='submit' id='save-url-info' value='submit' style="background-color: green; color: #ffffff;">
     </form>
 </div>
-<div id='yt-video-clear' class='button hidden' >Destroy YTV</div><br>
+<div id='yt-video-clear' class='btn btn-primary hidden' >Destroy YTV</div><br>
 <div id='url-results'></div>
 <div id="ytv"></div>

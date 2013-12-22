@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="/css/app.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/js/jquery-2.0.0.js"></script>
+ <!--   <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
     <script src="/js/bootstrap.min.js"></script>
     <!-- Controller Specific JS/CSS -->
     <?php if(isset($client_files_head)) echo $client_files_head; ?>

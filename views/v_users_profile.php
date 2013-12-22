@@ -1,4 +1,4 @@
-<br><br><br>   
+<br><br>   
 
 <h1>This is <?=$user->first_name?> <?=$user->last_name?>'s  profile:</h1>
 
@@ -12,16 +12,16 @@
 <mark class="green"> Upload/Change your Personal Avatar:</mark> 
 
 </p3>
-<br><br><br>
+<br><br>
 <img id="avatar" src="/uploads/avatars/<?=$user->avatarUrl?>" 
                 alt="" width="100" height="100">
 
-<br><br><br>
+<br><br>
 <form method='POST' action='/users/p_profile' enctype="multipart/form-data">
     <span class="error"><?php if (isset($error)) {echo '* Invalid File: Please Enter a Valid file(.jpg, png, svg, etc) and Size less than ' .ini_get('upload_max_filesize');}?> </span>
     <br>
     <input type="file" name="file">
-    <br> <br>                   
+    <br>                  
     <input id='refresh-avatar' type="submit" name="submit" 
            style="background-color: green; color: #ffffff;">
 </form>    

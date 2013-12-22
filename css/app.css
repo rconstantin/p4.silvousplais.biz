@@ -200,6 +200,8 @@ input#playlist{
 
 .error {color: rgb(200,0,0);}
 
+#results {color: green; font-weight: bold;}
+
 #menu {
     padding-bottom: 10px;
 }

@@ -1,0 +1,180 @@
+2013-12-22 8:29:27 - INFO --> -------------------------- 
+2013-12-22 8:29:27 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 8:29:27 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 8:29:27 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 8:29:27 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 8:29:27 - INFO --> CC:  
+2013-12-22 8:29:27 - INFO --> BCC:  
+2013-12-22 8:29:27 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 8:29:27 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 8:36:18 - INFO --> -------------------------- 
+2013-12-22 8:36:18 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 8:36:18 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 8:36:18 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 8:36:18 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 8:36:18 - INFO --> CC:  
+2013-12-22 8:36:18 - INFO --> BCC:  
+2013-12-22 8:36:18 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 8:36:18 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 8:38:11 - INFO --> -------------------------- 
+2013-12-22 8:38:11 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 8:38:11 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 8:38:11 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 8:38:11 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 8:38:11 - INFO --> CC:  
+2013-12-22 8:38:11 - INFO --> BCC:  
+2013-12-22 8:38:11 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 8:38:11 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:15:04 - INFO --> -------------------------- 
+2013-12-22 9:15:04 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:15:04 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:15:04 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:15:04 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 9:15:04 - INFO --> CC:  
+2013-12-22 9:15:04 - INFO --> BCC:  
+2013-12-22 9:15:04 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:15:04 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:15:59 - INFO --> -------------------------- 
+2013-12-22 9:15:59 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:15:59 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:15:59 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:15:59 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 9:15:59 - INFO --> CC:  
+2013-12-22 9:15:59 - INFO --> BCC:  
+2013-12-22 9:15:59 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:15:59 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:19:28 - INFO --> -------------------------- 
+2013-12-22 9:19:28 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:19:28 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:19:28 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:19:28 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 9:19:28 - INFO --> CC:  
+2013-12-22 9:19:28 - INFO --> BCC:  
+2013-12-22 9:19:28 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:19:28 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:37:56 - INFO --> -------------------------- 
+2013-12-22 9:37:56 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:37:56 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:37:56 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:37:56 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 9:37:56 - INFO --> CC:  
+2013-12-22 9:37:56 - INFO --> BCC:  
+2013-12-22 9:37:56 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:37:56 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:42:08 - INFO --> -------------------------- 
+2013-12-22 9:42:08 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:42:08 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:42:08 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:42:08 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 9:42:08 - INFO --> CC:  
+2013-12-22 9:42:08 - INFO --> BCC:  
+2013-12-22 9:42:08 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:42:08 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:53:23 - INFO --> -------------------------- 
+2013-12-22 9:53:23 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:53:23 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:53:23 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:53:23 - INFO --> To: Robbie Constantin (robbieconstantin@gmail.com),  
+2013-12-22 9:53:23 - INFO --> CC:  
+2013-12-22 9:53:23 - INFO --> BCC:  
+2013-12-22 9:53:23 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:53:23 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:57:17 - INFO --> -------------------------- 
+2013-12-22 9:57:17 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:57:17 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:57:17 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:57:17 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 9:57:17 - INFO --> CC:  
+2013-12-22 9:57:17 - INFO --> BCC:  
+2013-12-22 9:57:17 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:57:17 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 9:58:33 - INFO --> -------------------------- 
+2013-12-22 9:58:33 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 9:58:33 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 9:58:33 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 9:58:33 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 9:58:33 - INFO --> CC:  
+2013-12-22 9:58:33 - INFO --> BCC:  
+2013-12-22 9:58:33 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 9:58:33 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:02:18 - INFO --> -------------------------- 
+2013-12-22 10:02:18 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:02:18 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:02:18 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:02:18 - INFO --> To: Robbie Constantin (robbieconstantin@verizon.net),  
+2013-12-22 10:02:18 - INFO --> CC:  
+2013-12-22 10:02:18 - INFO --> BCC:  
+2013-12-22 10:02:18 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:02:18 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:06:40 - INFO --> -------------------------- 
+2013-12-22 10:06:40 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:06:40 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:06:40 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:06:40 - INFO --> To: Robbie Constantin (robbieconstantin@gmail.com),  
+2013-12-22 10:06:40 - INFO --> CC:  
+2013-12-22 10:06:40 - INFO --> BCC:  
+2013-12-22 10:06:40 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:06:40 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:13:59 - INFO --> -------------------------- 
+2013-12-22 10:13:59 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:13:59 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:13:59 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:13:59 - INFO --> To: Robbie Constantin (robbieconstantin@gmail.com),  
+2013-12-22 10:13:59 - INFO --> CC:  
+2013-12-22 10:13:59 - INFO --> BCC:  
+2013-12-22 10:13:59 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:13:59 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:15:24 - INFO --> -------------------------- 
+2013-12-22 10:15:24 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:15:24 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:15:24 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:15:24 - INFO --> To: Robbie Constantin (robbieconstantin@gmail.com),  
+2013-12-22 10:15:24 - INFO --> CC:  
+2013-12-22 10:15:24 - INFO --> BCC:  
+2013-12-22 10:15:24 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:15:24 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:24:38 - INFO --> -------------------------- 
+2013-12-22 10:24:38 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:24:38 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:24:38 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:24:38 - INFO --> To: Robbie Constantin (robbieconstantin@gmail.com),  
+2013-12-22 10:24:38 - INFO --> CC:  
+2013-12-22 10:24:38 - INFO --> BCC:  
+2013-12-22 10:24:38 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:24:38 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:26:57 - INFO --> -------------------------- 
+2013-12-22 10:26:57 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:26:57 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:26:57 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:26:57 - INFO --> To: Enzo constantin (robbieconstantin@gmail.com),  
+2013-12-22 10:26:57 - INFO --> CC:  
+2013-12-22 10:26:57 - INFO --> BCC:  
+2013-12-22 10:26:57 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:26:57 - INFO --> Body: Hi Enzo constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:28:05 - INFO --> -------------------------- 
+2013-12-22 10:28:05 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:28:05 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:28:05 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:28:05 - INFO --> To: frr rrrrrrr (robbieconstantin@gmail.com),  
+2013-12-22 10:28:05 - INFO --> CC:  
+2013-12-22 10:28:05 - INFO --> BCC:  
+2013-12-22 10:28:05 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:28:05 - INFO --> Body: Hi frr rrrrrrr, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:38:53 - INFO --> -------------------------- 
+2013-12-22 10:38:53 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:38:53 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:38:53 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:38:53 - INFO --> To: Robbie Constantin (robbieconstantin@hotmail.com),  
+2013-12-22 10:38:53 - INFO --> CC:  
+2013-12-22 10:38:53 - INFO --> BCC:  
+2013-12-22 10:38:53 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:38:53 - INFO --> Body: Hi Robbie Constantin, this is just a message to confirm your registration at EmbedUrTube 
+2013-12-22 10:40:09 - INFO --> -------------------------- 
+2013-12-22 10:40:09 - INFO --> Controller/Method: users/p_signup 
+2013-12-22 10:40:09 - INFO --> OUTGOING EMAILS ARE DISABLED. THIS EMAIL WAS NOT SENT TO THE RECIPIENTS, ONLY robbieconstantin@gmail.com 
+2013-12-22 10:40:09 - INFO --> From: EmbedUrTube (robbieconstantin@gmail.com) 
+2013-12-22 10:40:09 - INFO --> To: robbie constantin (robbieconstantin@hotmail.com),  
+2013-12-22 10:40:09 - INFO --> CC:  
+2013-12-22 10:40:09 - INFO --> BCC:  
+2013-12-22 10:40:09 - INFO --> Subject: Welcome to EmbedUrTube 
+2013-12-22 10:40:09 - INFO --> Body: Hi robbie constantin, this is just a message to confirm your registration at EmbedUrTube 
