@@ -79,7 +79,7 @@ p1 {
 p2 {
     font-family: 'AmalgamationRegular';
     color: green;
-    text-shadow: 2px 1px 1px #000000;
+    text-shadow: 0.5px 1px 1px #000000;
     text-align: center;
 }
 p3 {
